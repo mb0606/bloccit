@@ -1,6 +1,17 @@
 Bloccit::Application.routes.draw do
+  
   devise_for :users
 
+  resources :topics do
+    resources :posts, except: [:index]
+  end
+
+#Nested routes ***********************
+#show posts that are associated with topics : /topics/1/posts/3 
+#  get "topics/index"
+#  get "topics/new"
+#  get "topics/show"
+#  get "topics/edit"
 #  get "posts/index"
 #  get "posts/show"
 #  get "posts/new"
@@ -8,9 +19,9 @@ Bloccit::Application.routes.draw do
 #  get "welcome/index"
 #  get "welcome/about"
 
-resources :posts
+  resources :posts
 
-match "about" => 'welcome#about', via: :get
+  match "about" => 'welcome#about', via: :get
 
   root to: 'welcome#index'
 end
