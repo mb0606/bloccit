@@ -236,6 +236,8 @@ app/helpers
 config
   Configuration files for the Rails environment, the routing map, the database,
   and other dependencies.
+Setup
+Copy the "config/application.example.yml" file and remove "example". Your application.yml should contain your sensitive credentials. It should be included in .gitnore as well.  
 
 db
   Contains the database schema in schema.rb. db/migrate contains all the
