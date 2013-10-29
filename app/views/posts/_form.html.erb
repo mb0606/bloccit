@@ -1,4 +1,6 @@
 <%= form_for [topic, post], html: { class: 'form-horizontal' } do |f| %>
+ <!-- [topic,Post.new] or [topic,post that already exists]
+       calls create        calls update_attributes               -->
   <% if post.errors.any? %>
     <div class="alert alert-block">
       <h4>There are <%= pluralize(post.errors.count, "error") %>.</h4>
@@ -21,9 +23,22 @@
       <%= f.text_area :body, rows: 8 %>
     </div>
   <% end %>
+<!-- ########################################################## -->
+  <div class="control-group">
+    <%= image_tag(post.image.thumb.url) if post.image? %>
+    <%= f.label :image, class: 'control-label' %>
+    <div class="controls"> 
+      <%= f.file_field :image %>
+    </div>
+  </div>
+
+
   <div class="control-group">
     <div class="controls">
       <%= f.submit "Save", class: 'btn' %>
     </div>
   </div>
 <% end %>
+
+<!-- if user came through view edit the f.submit calls update
+if user comes through view new the f.submit calls create -->

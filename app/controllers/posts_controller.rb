@@ -20,6 +20,9 @@ class PostsController < ApplicationController
     @topic = Topic.find(params[:topic_id])
     @post = current_user.posts.build(params[:post])
     @post.topic = @topic
+    # finds topic - @post is a new post associated to current_user-
+    # @post.topic = put topic_id in the column of the posts table 
+
 
     authorize! :create, @post, message: "You need to be signed up to do that."
     if @post.save
