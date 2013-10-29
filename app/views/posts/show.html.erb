@@ -9,6 +9,8 @@
     </small>  
 
     <p><%= markdown @post.body %></p>
+    <p><%= image_tag(@post.image_url) if @post.image? %></p>
+   <!--      @post.image_url is a help pointing to @post.image.url -->
   </div>
   
   <div class="span4">
