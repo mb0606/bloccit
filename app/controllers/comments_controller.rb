@@ -20,9 +20,6 @@ class CommentsController < ApplicationController
     @post = Post.find(params[:post_id])
     @comment = current_user.comments.build(params[:comment])
     @comment.post = @comment
-    # finds topic - @post is a new post associated to current_user-
-    # @post.topic = put topic_id in the column of the posts table 
-
 
     authorize! :create, @comment, message: "You need to be signed up to do that."
     if @comment.save
@@ -38,7 +35,7 @@ class CommentsController < ApplicationController
     @post = Post.find(params[:post_id])
     @comment = Comment.find(params[:id])
     @comment.destroy
-    authorize! :delete, @post, message: "You need to own the post to edit it."
+    authorize! :destroy, @comment, message: "You need to own the post to edit it."
   end
 end
 

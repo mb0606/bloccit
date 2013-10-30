@@ -18,14 +18,11 @@
       <%= link_to "Edit", edit_topic_post_path(@topic,@post), class: 'btn btn-large btn-block' %>
     <% end %>
   </div>
-  <% @comments.each do |comment| %>
-    <small>
-      <%= comment.body %>
-    </small>
+  <% @post.comments.each do |comment| %>
+      <%= render comment  %>
+    <!--   This == render @post.comments == render partial 'comments/comment', local: (comment: comment) -->
   <% end %>
-  <% if can? :create, Post %>
-    <%= link_to "New Comment", topic_post_comment_path(@topic,@post), class: 'btn btn-primary btn-mini' %>
-  <% end %>
-
-    <%= render partial: 'comment_form', locals: {post: @post, comment: @comment} %>
+  <% if can? :create, Comment %>
+    <%= render partial: 'comments/form', locals: {topic: @topic,post: @post, comment: @comment} %>
+  <% end%>
 </div>
