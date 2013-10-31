@@ -1,18 +1,14 @@
-
-
-</div>
-<div class="row">
-  <div class="span8">
-   
-      <div class="media">
-        <div class="media-body">
-          <h4 class="media-heading">
-            <small>
-            <%= comment.body %>
-
-            
-            </small>
-          </h4>
-        </div>
-      </div>
+<div class="media">
+  <%= link_to '#', class: 'pull-left' do %>
+    <%= image_tag(comment.user.avatar.tiny.url) if comment.user.avatar? %>
+  <% end %>
+  <div class="media-body">
+    <small>
+      <%= comment.user.name %> commented <%= time_ago_in_words(comment.created_at) %> ago
+      <% if can? :destroy, comment %>
+         <%= link_to "Delete", [@topic, @post, comment], method: :delete %>
+      <% end %>
+    </small>
+    <p><%= comment.body %></p>
   </div>
+</div>
