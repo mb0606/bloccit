@@ -23,6 +23,6 @@
     <!--   This == render @post.comments == render partial 'comments/comment', local: (comment: comment) -->
   <% end %>
   <% if can? :create, Comment %>
-    <%= render partial: 'comments/form', locals: {topic: @topic,post: @post, comment: @comment} %>
+    <%= render partial: 'comments/form', locals: {topic: @topic,post: @post, comment: Comment.new} %>
   <% end%>
 </div>
