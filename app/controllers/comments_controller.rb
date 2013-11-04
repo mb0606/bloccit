@@ -5,12 +5,12 @@ class CommentsController < ApplicationController
   def show
   end
 
-  def new
-    @topic = Topic.find(params[:topic_id])
-    @post = Post.find(params[:topic_id])
-    @comment= Comment.new 
-    authorize! :create, Comment, message: "You need to be a member to create a new comment."
-  end
+  # def new
+  #   @topic = Topic.find(params[:topic_id])
+  #   @post = Post.find(params[:topic_id])
+  #   @comment= Comment.new 
+  #   authorize! :create, Comment, message: "You need to be a member to create a new comment."
+  # end
 
   def edit
   end
