@@ -1,7 +1,7 @@
 Bloccit::Application.routes.draw do
   
   
-  devise_for :users
+  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
 
   resources :topics do
     resources :posts, except: [:index] do
@@ -22,7 +22,7 @@ Bloccit::Application.routes.draw do
 #  get "welcome/index"
 #  get "welcome/about"
 
-
+  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
 
   match "about" => 'welcome#about', via: :get
 
