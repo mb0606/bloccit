@@ -20,6 +20,7 @@ class Post < ActiveRecord::Base
 
   def up_votes
     self.votes.where(value: 1).count
+    #self = post that extract
   end
 
   def down_votes
@@ -40,6 +41,7 @@ class Post < ActiveRecord::Base
 
    def create_vote
     user.votes.create(value: 1, post: self)
+    # it is the user assoicated to 
   end  
 
 
