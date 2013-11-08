@@ -17,9 +17,12 @@ class Comment < ActiveRecord::Base
     self.post.favorites.each do |favorite|
         #comment instance that belongs to that post which has been favorited by
         #a list of users. Favorite table has 2 columns post_id,user_id
-      FavoriteMailer.new_comment(favorite.user, self.post, self).deliver
+##      FavoriteMailer.new_comment(favorite.user, self.post, self).deliver
                 ## new_comment is defined in mailers/favorites_mailer.rb
                 #every time is is called it passes the argments and mails
+      if favorite.user_id != self.user_id && favorite.user.email_favorites?
+        FavoriteMailer.new_comment(favorite.user, self.post, self).deliver
+      end
     end
   end
 

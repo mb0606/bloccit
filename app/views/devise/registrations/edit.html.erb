@@ -16,8 +16,8 @@
   <div><%= f.label :password_confirmation %><br />
   <%= f.password_field :password_confirmation %></div>
 
-  <div><%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-  <%= f.password_field :current_password %></div>
+  <!-- <div><%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
+  <%= f.password_field :current_password %></div> -->
 
   <div class="control-group">
     <%= image_tag(current_user.avatar.small.url) if current_user.avatar? %>
@@ -26,6 +26,14 @@
       <%= f.file_field :avatar %>
     </div>
   </div>
+
+  <div class="control-group">
+     <%= f.label :email_favorites, class: 'control-label' %>
+     <div class="controls"> 
+       <%= f.check_box :email_favorites %>
+     </div>
+  </div>
+
 
   <div><%= f.submit "Update" %></div>
   
