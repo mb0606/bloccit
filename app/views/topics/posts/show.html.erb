@@ -1,0 +1,53 @@
+<!-- <h1><%= markdown @post.title %></h1> -->
+
+<div class="row">
+  <div class="span8">
+    <%= render partial: 'votes/voter', locals: { topic: @topic, post: @post } %>
+    <h1><%= markdown @post.title %></h1>
+    <small>
+      <%= image_tag(@post.user.avatar.tiny.url) if @post.user.avatar? %>
+      submitted <%= time_ago_in_words(@post.created_at) %> ago by 
+      <%= @post.user.name %>
+    </small>  
+
+    <p><%= markdown @post.body %></p>
+    <p><%= image_tag(@post.image_url) if @post.image? %></p>
+   <!--      @post.image_url is a help pointing to @post.image.url -->
+  </div>
+  
+  <div class="span4">
+    <% if can? :edit, @post %>
+      <%= link_to "Edit", edit_topic_post_path(@topic,@post), class: 'btn btn-large btn-block' %>
+    <% end %>
+
+    <% if can? :destroy, @post %>
+      <%= link_to "Delete Post", [@topic, @post], method: :delete, class: 'btn btn-large btn-block btn-danger', confirm: 'Are you sure you want to delete this post?' %>
+    <% end %>        
+  </div>
+  <div>
+    <h3><%= pluralize(@post.points, 'point') %></h3>
+    <small>
+      <%= pluralize(@post.up_votes, 'up vote') %>, 
+       <%= pluralize(@post.down_votes, 'down vote') %>
+    </small>
+  </div>
+  <%= render partial: 'favorites/favorite', locals: { topic: @topic, post: @post } %>
+
+  <div class="span8">
+ 
+      <%= render partial: 'comments/comment', collection: @comments %>
+    <!--   This == render @post.comments == render partial 'comments/comment', local: (comment: comment) --><!--  @comments = @post.comments
+ -->
+  <% if can? :create, Comment %>
+    <hr/>
+
+    <a href="#" class="js-add-comment" data-selector="js-new-comment">Add Comment</a>
+    <br/>
+    <div class="js-new-comment hide">
+    <h4>New Comment</h4>
+
+    <%= render partial: 'comments/form', locals: {topic: @topic,post: @post, comment: Comment.new} %>
+    </div>
+  <% end%>
+</div>
+</div>
