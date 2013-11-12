@@ -26,3 +26,9 @@ $(document).ready(function() {
     return false;
   });
 });
+$(document).ready(function() {
+  $("h1").hover(function(){
+   $("h1").fadeOut(1000)
+   $("h1").fadeIn(1000)
+})
+})

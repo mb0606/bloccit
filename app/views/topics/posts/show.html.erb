@@ -34,8 +34,14 @@
   <%= render partial: 'favorites/favorite', locals: { topic: @topic, post: @post } %>
 
   <div class="span8">
- 
+    <%if @comments.count >1 %>
+      <h2 class='js-comments-count'><%= @comments.count %> Comments</h2>
       <%= render partial: 'comments/comment', collection: @comments %>
+    <%else%>
+      <h2 class='js-comments-count'><%= @comments.count %> Comment</h2>
+      <%= render partial: 'comments/comment', collection: @comments %>
+    <%end%>
+
     <!--   This == render @post.comments == render partial 'comments/comment', local: (comment: comment) --><!--  @comments = @post.comments
  -->
   <% if can? :create, Comment %>
