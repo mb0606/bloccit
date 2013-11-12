@@ -1,3 +1,4 @@
+<% if can? :create, Vote %>
 <div class="vote-arrows pull-left">
   <div>
     <%= link_to " ", 
@@ -13,3 +14,4 @@
       class: "icon-chevron-down #{(current_user.voted(post) && current_user.voted(post).down_vote?) ? 'voted' : '' }" %>
   </div>
 </div>
+<%end%>

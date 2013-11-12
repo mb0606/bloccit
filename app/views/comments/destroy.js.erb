@@ -2,7 +2,7 @@
 <% if @comment.destroyed?%>
   $('#comment-' +<%= @comment.id %>).hide();
   $('.js-comments-count').html("<%= pluralize(@post.comments.count,'Comment') %>");
-
+   $('.js-comments-count').append("<div class= 'alert alert-success'><%= flash[:notice]%></div>");
 <% else %>
   $('#comment-' +<%= @comment.id %>).prepend("<div class='alert alert-error'><%= flash[:error] %></div>");
 <% end %>

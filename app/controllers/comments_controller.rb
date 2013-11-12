@@ -24,7 +24,7 @@ class CommentsController < ApplicationController
 
     authorize! :create, @comment, message: "You need to be signed up to do that."
     if @comment.save
-      flash[:notice] = "Comment was saved."
+      flash.now[:notice] = "Comment was saved."
       
     else
       flash[:error] = "There was an error saving the post. Please try again."
@@ -44,7 +44,7 @@ class CommentsController < ApplicationController
 
     authorize! :destroy, @comment, message: "You need to own the comment to delete it."
     if @comment.destroy
-      flash[:notice] = "Comment was removed."
+      flash.now[:notice] = "Comment was removed."
      
     else
       flash[:error] = "Comment couldn't be deleted. Try again."
